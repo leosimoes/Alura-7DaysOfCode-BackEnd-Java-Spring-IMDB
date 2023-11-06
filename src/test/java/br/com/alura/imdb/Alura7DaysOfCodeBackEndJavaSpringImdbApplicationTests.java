@@ -8,7 +8,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.Map;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -23,6 +23,7 @@ class Alura7DaysOfCodeBackEndJavaSpringImdbApplicationTests {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
     @Test
     void contextLoads() {
     }
@@ -30,8 +31,8 @@ class Alura7DaysOfCodeBackEndJavaSpringImdbApplicationTests {
     @Test
     void testImdbEndpoint() {
 
-        ResponseEntity<String> response =
-                this.restTemplate.getForEntity(String.format(this.URL, Integer.toString(porta)), String.class);
+        ResponseEntity<List> response =
+                this.restTemplate.getForEntity(String.format(this.URL, Integer.toString(porta)), List.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());

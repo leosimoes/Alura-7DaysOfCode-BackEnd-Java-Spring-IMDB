@@ -28,6 +28,15 @@ Dia 2:
 
 ![Test-1-Endpoint](imgs/test1-endpoint.jpg)
 
+Dia 3:
+- Criar classe Filme e usar Lombok para gerar getters, setters e construtores.
+
+![UML-Classe-Filme](imgs/UML-Classe-Filme.jpg)
+
+- Adicionar dependência do GSON `implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'` em `build.gradle`.
+- Alterar método da controller para que o retorno tenta uma List de Filmes ao invés de uma String.
+- Alterar o método da classe de teste para verificar o retorno do tipo List e não String.
+
 
 ## Referências
 
