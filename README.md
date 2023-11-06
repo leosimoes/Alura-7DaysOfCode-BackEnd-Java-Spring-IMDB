@@ -7,11 +7,26 @@ Projeto do 7 Days of Code de Spring da Alura: Consumindo a API de filmes do IMDB
 
 Dia 1:
 - Criar projeto com Spring Boot.
+
+![IntelliJ-Spring-Initializr-Directories](imgs/IntelliJ-Spring-Initializr-1.jpg)
+
+![IntelliJ-Spring-Initializr-Dependences](imgs/IntelliJ-Spring-Initializr-2.jpg)
+
 - ~~Cadastrar no site IMDB para obter chave da API.~~
 - ~~Colocar a Chave da API em `application.properties` mas não compartilhá-la.~~
 - Criar a classe RestTemplateConfig que tem um método com `@Bean` que retorna uma instância de RestTemplate.
 - Criar a classe ImdbController e implementar método de getmapping para `/imdb` usando a url para o dados. 
 - Testar o endpoint `http://localhost:8080/imdb`
+
+Dia 2:
+- Remover o campo `imdbApiKey` de ImdbController e seu valor de `application.properties`, já que os dados serão obtidas via url do github.
+- Alterar classe de teste `Alura7DaysOfCodeBackEndJavaSpringImdbApplicationTests`:
+  * Anotar a classe com `@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)`.
+  * Criar atributo `porta` e anotá-lo com `@LocalServerPort`.
+  * Criar atributo `restTemplate` do tipo `TestRestTemplate` e anotá-lo com `@Autowired`.
+  * Criar método `testImdbEndpoint`para testar o endpoint `http://localhost:8080/imdb`.
+
+![Test-1-Endpoint](imgs/test1-endpoint.jpg)
 
 
 ## Referências
