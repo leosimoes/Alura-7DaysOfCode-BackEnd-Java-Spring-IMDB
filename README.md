@@ -16,6 +16,9 @@ Dia 1:
 - ~~Colocar a Chave da API em `application.properties` mas não compartilhá-la.~~
 - Criar a classe RestTemplateConfig que tem um método com `@Bean` que retorna uma instância de RestTemplate.
 - Criar a classe ImdbController e implementar método de getmapping para `/imdb` usando a url para o dados. 
+
+![UML-Classe-Controller](imgs/UML-Classe-ImdbController-v1.jpg)
+
 - Testar o endpoint `http://localhost:8080/imdb`
 
 Dia 2:
@@ -36,6 +39,28 @@ Dia 3:
 - Adicionar dependência do GSON `implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'` em `build.gradle`.
 - Alterar método da controller para que o retorno tenta uma List de Filmes ao invés de uma String.
 - Alterar o método da classe de teste para verificar o retorno do tipo List e não String.
+
+Dia 4:
+- Criar classe TemplateHTML com campos `INICIO_HTML`, `FILME_HTML` e `FIM_HTML`;
+
+![UML-Classe-TemplateHTML](imgs/UML-Classe-TemplateHTML.jpg)
+
+- Criar Classe GeradorHTML com método `gerarStringHTML()`;
+
+![UML-Classe-GeradorHTML](imgs/UML-Classe-GeradorHTML.jpg)
+
+- Refatorar a classe ImdbController:
+  * Tornar `fetchTopMoviesData()` privado e remover endpoint `http://localhost:8080/imdb`.
+  * Criar endpoint `http://localhost:8080/imdb/json` e testá-lo.
+  * Criar endpoint `http://localhost:8080/imdb/html` e testá-lo.
+  * Criar endpoint `http://localhost:8080/imdb/html-download` e testá-lo.
+
+![UML-Classe-Controller-v2](imgs/UML-Classe-ImdbController-v2.jpg)
+
+- Alterar classe de teste `Alura7DaysOfCodeBackEndJavaSpringImdbApplicationTests`:
+  * Deletar o método `testImdbEndpoint()`.
+  * Criar método `testImdbEndpoint_JSON()`para testar o endpoint `http://localhost:8080/imdb/json`.
+  * Criar método `testImdbEndpoint_HTML()`para testar o endpoint `http://localhost:8080/imdb/html`.
 
 
 ## Referências

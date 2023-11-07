@@ -16,7 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class Alura7DaysOfCodeBackEndJavaSpringImdbApplicationTests {
 
-    private final String URL =  "http://localhost:%s/imdb";
+    private final String URL_1 =  "http://localhost:%s/imdb/json";
+    private final String URL_2 =  "http://localhost:%s/imdb/html";
+    private final String URL_3 =  "http://localhost:%s/html-download";
 
     @LocalServerPort
     private int porta;
@@ -29,10 +31,20 @@ class Alura7DaysOfCodeBackEndJavaSpringImdbApplicationTests {
     }
 
     @Test
-    void testImdbEndpoint() {
+    void testImdbEndpoint_JSON() {
 
         ResponseEntity<List> response =
-                this.restTemplate.getForEntity(String.format(this.URL, Integer.toString(porta)), List.class);
+                this.restTemplate.getForEntity(String.format(this.URL_1, Integer.toString(porta)), List.class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+    }
+
+    @Test
+    void testImdbEndpoint_HTML() {
+
+        ResponseEntity<String> response =
+                this.restTemplate.getForEntity(String.format(this.URL_2, Integer.toString(porta)), String.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
