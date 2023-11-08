@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import java.io.PrintWriter;
 import java.util.List;
 
+@Component
 public class GeradorHTML {
     public GeradorHTML(){
     }

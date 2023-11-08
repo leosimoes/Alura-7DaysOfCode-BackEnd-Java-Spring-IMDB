@@ -14,19 +14,19 @@ public class TemplateHTML {
                     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
                     crossorigin="anonymous"/>
                 </head>
-                <body>
+                <body style="background-color: black;">
             """;
 
     public static final String FILME_HTML = """
-                    <div class="d-inline-block">
-                        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                            <h4 class="card-header">%s</h4>
-                            <div class="card-body">
-                                <img class="card-img" src="%s" alt="%s">
-                                <p class="card-text mt-2">Nota: %s - Ano: %s</p>
-                            </div>
+                <div class="d-inline-block">
+                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                        <h4 class="card-header" style="min-height: 6rem; overflow: hidden;">%s</h4>
+                        <div class="card-body">
+                            <img class="card-img" src="%s" alt="%s">
+                            <p class="card-text mt-2">Nota: %s - Ano: %s</p>
                         </div>
                     </div>
+                </div>
             """;
 
     public static final String FIM_HTML = """

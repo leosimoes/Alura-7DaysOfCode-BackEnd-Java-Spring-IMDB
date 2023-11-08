@@ -5,7 +5,7 @@ Projeto do 7 Days of Code de Spring da Alura: Consumindo a API de filmes do IMDB
 
 ## Atividades
 
-Dia 1:
+### Dia 1:
 - Criar projeto com Spring Boot.
 
 ![IntelliJ-Spring-Initializr-Directories](imgs/IntelliJ-Spring-Initializr-1.jpg)
@@ -21,7 +21,7 @@ Dia 1:
 
 - Testar o endpoint `http://localhost:8080/imdb`
 
-Dia 2:
+### Dia 2:
 - Remover o campo `imdbApiKey` de ImdbController e seu valor de `application.properties`, já que os dados serão obtidas via url do github.
 - Alterar classe de teste `Alura7DaysOfCodeBackEndJavaSpringImdbApplicationTests`:
   * Anotar a classe com `@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)`.
@@ -31,7 +31,7 @@ Dia 2:
 
 ![Test-1-Endpoint](imgs/test1-endpoint.jpg)
 
-Dia 3:
+### Dia 3:
 - Criar classe Filme e usar Lombok para gerar getters, setters e construtores.
 
 ![UML-Classe-Filme](imgs/UML-Classe-Filme.jpg)
@@ -40,7 +40,7 @@ Dia 3:
 - Alterar método da controller para que o retorno tenta uma List de Filmes ao invés de uma String.
 - Alterar o método da classe de teste para verificar o retorno do tipo List e não String.
 
-Dia 4:
+### Dia 4:
 - Criar classe TemplateHTML com campos `INICIO_HTML`, `FILME_HTML` e `FIM_HTML`;
 
 ![UML-Classe-TemplateHTML](imgs/UML-Classe-TemplateHTML.jpg)
@@ -62,6 +62,26 @@ Dia 4:
   * Criar método `testImdbEndpoint_JSON()`para testar o endpoint `http://localhost:8080/imdb/json`.
   * Criar método `testImdbEndpoint_HTML()`para testar o endpoint `http://localhost:8080/imdb/html`.
 
+### Dia 5:
+- Refatorar o código, delegando parte das responsabilidades de ImdbController para outras classes.
+- Criar classe ImdbClientFetch:
+  * terá um atributo RestTemplate e um String (URL).
+  * terá o método `fetchTopFilmes()` extraido de `fetchTopMoviesData()` de ImdbController;
+  * anotada com `@Component`.
+
+![UML-Classe-ImdbClientFetch-v1](imgs/UML-Classe-ImdbClientFetch-v1.jpg)
+
+- Criar classe ImdbService:
+  * terá um atributo ImdbClientFetch e um GeradorHTML;
+  * terá métodos `jsonTopFilmes()`, `htmlTopFilmes()` e `downloadHtml()` extraídos dos métodos públicos de ImdbController;
+  * anotada com `@Service`.
+
+![UML-Classe-ImdbService-v1](imgs/UML-Classe-ImdbService-v1.jpg)
+
+- A classe ImdbController terá apenas um atributo, do tipo ImdbService.
+  
+![UML-Classe-Controller-v3](imgs/UML-Classe-ImdbController-v3.jpg)
+
 
 ## Referências
 
@@ -74,5 +94,5 @@ https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframe
 Baeldung Rest Template:
 https://www.baeldung.com/rest-template
 
-Imdb Top 250 Filmes:
+Imdb Top Filmes:
 https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json
