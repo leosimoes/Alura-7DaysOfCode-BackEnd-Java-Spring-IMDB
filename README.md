@@ -5,6 +5,7 @@ Projeto do 7 Days of Code de Spring da Alura: Consumindo a API de filmes do IMDB
 
 ## Atividades
 
+
 ### Dia 1:
 - Criar projeto com Spring Boot.
 
@@ -21,6 +22,7 @@ Projeto do 7 Days of Code de Spring da Alura: Consumindo a API de filmes do IMDB
 
 - Testar o endpoint `http://localhost:8080/imdb`
 
+
 ### Dia 2:
 - Remover o campo `imdbApiKey` de ImdbController e seu valor de `application.properties`, já que os dados serão obtidas via url do github.
 - Alterar classe de teste `Alura7DaysOfCodeBackEndJavaSpringImdbApplicationTests`:
@@ -31,6 +33,7 @@ Projeto do 7 Days of Code de Spring da Alura: Consumindo a API de filmes do IMDB
 
 ![Test-1-Endpoint](imgs/test1-endpoint.jpg)
 
+
 ### Dia 3:
 - Criar classe Filme e usar Lombok para gerar getters, setters e construtores.
 
@@ -39,6 +42,7 @@ Projeto do 7 Days of Code de Spring da Alura: Consumindo a API de filmes do IMDB
 - Adicionar dependência do GSON `implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'` em `build.gradle`.
 - Alterar método da controller para que o retorno tenta uma List de Filmes ao invés de uma String.
 - Alterar o método da classe de teste para verificar o retorno do tipo List e não String.
+
 
 ### Dia 4:
 - Criar classe TemplateHTML com campos `INICIO_HTML`, `FILME_HTML` e `FIM_HTML`;
@@ -62,6 +66,7 @@ Projeto do 7 Days of Code de Spring da Alura: Consumindo a API de filmes do IMDB
   * Criar método `testImdbEndpoint_JSON()`para testar o endpoint `http://localhost:8080/imdb/json`.
   * Criar método `testImdbEndpoint_HTML()`para testar o endpoint `http://localhost:8080/imdb/html`.
 
+
 ### Dia 5:
 - Refatorar o código, delegando parte das responsabilidades de ImdbController para outras classes.
 - Criar classe ImdbClientFetch:
@@ -81,6 +86,20 @@ Projeto do 7 Days of Code de Spring da Alura: Consumindo a API de filmes do IMDB
 - A classe ImdbController terá apenas um atributo, do tipo ImdbService.
   
 ![UML-Classe-Controller-v3](imgs/UML-Classe-ImdbController-v3.jpg)
+
+
+### Dia 6:
+
+- Adicionar 3 novos endpoints que serão similares aos já criados, mas recebem parte do título na url e retornam os correspondentes:
+  * Adicionar novos métodos para as classes ImdbController e ImdbService.
+
+![UML-Classe-Controller-v3](imgs/UML-Classe-ImdbController-v4-ImdbService-v2.jpg)
+
+  * Criar endpoint `http://localhost:8080/imdb/json/{titulo}` e testá-lo.
+  * Criar endpoint `http://localhost:8080/imdb/html/{titulo}` e testá-lo.
+  * Criar endpoint `http://localhost:8080/imdb/html-download/{titulo}` e testá-lo.
+
+
 
 
 ## Referências
