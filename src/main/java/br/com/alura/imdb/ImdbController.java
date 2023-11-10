@@ -1,9 +1,7 @@
 package br.com.alura.imdb;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -71,4 +69,40 @@ public class ImdbController {
         }
     }
 
+    @PostMapping("/imdb/favoritos")
+    public ResponseEntity<Filme> adicionarFilmeFavorito(@RequestBody Filme filme){
+        Filme favorito = this.imdbService.adicionarFilmeFavorito(filme);
+        return ResponseEntity.accepted().body(favorito);
+    }
+
+    @DeleteMapping("/imdb/favoritos/{id}")
+    public ResponseEntity<Boolean> deletarFilmeFavorito(@PathVariable("id") String id){
+        Boolean is_removed  = this.imdbService.delFilmeFavoritoId(id);
+        return ResponseEntity.accepted().body(is_removed);
+    }
+
+    @GetMapping("/imdb/favoritos/json")
+    public ResponseEntity<List<Filme>> jsonFilmesFavoritos(){
+        List<Filme> favoritos = this.imdbService.getJsonFilmesFavoritos();
+        return ResponseEntity.accepted().body(favoritos);
+    }
+
+    @GetMapping("/imdb/favoritos/html")
+    public ResponseEntity<String> htmlFilmesFavoritos() {
+        String html = this.imdbService.getHtmlFilmesFavoritos();
+        return ResponseEntity.ok(html);
+    }
+
+    @GetMapping("/imdb/favoritos/html-download")
+    public ResponseEntity<byte[]> downloadHtmlFilmesFavoritos() {
+        try {
+            byte[] arquivo = this.imdbService.getHtmlilmesFavoritosDownload();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.TEXT_HTML);
+            headers.setContentDispositionFormData("attachment", "index.html");
+            return new ResponseEntity<>(arquivo, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

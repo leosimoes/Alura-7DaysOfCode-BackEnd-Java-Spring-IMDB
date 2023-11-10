@@ -16,13 +16,21 @@ public class ImdbClientFetch {
 
     private final String URL = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
     private final RestTemplate restTemplate;
+    private List<Filme> topFilmes;
 
     @Autowired
     public ImdbClientFetch(RestTemplate restTemplate){
         this.restTemplate = restTemplate;
     }
 
-    public List<Filme> fetchTopFilmes(){
+    public List<Filme> loadTopFilmes(){
+        if(this.topFilmes == null){
+            this.topFilmes = this.fetchTopFilmes();
+        }
+        return this.topFilmes;
+    }
+
+    private List<Filme> fetchTopFilmes(){
         String json = restTemplate.getForObject(this.URL, String.class);
 
         Gson gson = new Gson();

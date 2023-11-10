@@ -1,6 +1,7 @@
 # Alura - 7 Days Of Code - Back-End - Java - Spring - IMDB
 
-Projeto do 7 Days of Code de Spring da Alura: Consumindo a API de filmes do IMDB e criando uma página HTML de exibição.
+Projeto do 7 Days of Code de Spring da Alura: 
+Consumindo a API de filmes do IMDB e criando uma página HTML de exibição.
 
 
 ## Atividades
@@ -93,13 +94,66 @@ Projeto do 7 Days of Code de Spring da Alura: Consumindo a API de filmes do IMDB
 - Adicionar 3 novos endpoints que serão similares aos já criados, mas recebem parte do título na url e retornam os correspondentes:
   * Adicionar novos métodos para as classes ImdbController e ImdbService.
 
-![UML-Classe-Controller-v3](imgs/UML-Classe-ImdbController-v4-ImdbService-v2.jpg)
+![UML-Classe-Controller-v4-Service-v2](imgs/UML-Classe-ImdbController-v4-ImdbService-v2.jpg)
 
   * Criar endpoint `http://localhost:8080/imdb/json/{titulo}` e testá-lo.
   * Criar endpoint `http://localhost:8080/imdb/html/{titulo}` e testá-lo.
   * Criar endpoint `http://localhost:8080/imdb/html-download/{titulo}` e testá-lo.
 
 
+### Dia 7:
+- Fazer com que ImdbClientFetch faça requisição dos dados apenas uma vez e os armazene em memória:
+  * Refatorar ImdbClientFetch: criar atributo `topFilmes` e método `loadTopFilmes()` e tornar o método `fetchTopFilmes()` privado.
+  * Refatorar ImdbService para que chame o método `loadTopFilmes()` de ImdbClientFetch, e não `fetchTopFilmes()`.
+
+![UML-Classe-ImdbClientFetch-v2](imgs/UML-Classe-ImdbClientFetch-v2.jpg)
+
+- Usar o Swagger:
+  * Adicionar dependência `implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.2.0'` ao build.gradle.
+  * Acessar `http://localhost:8080/swagger-ui.html`.
+- Adicionar funcionalidades de favoritos por ids dos filmes:
+  * Adicionar favoritos
+  * Criar e testar endpoind (POST) `http://localhost:8080/imdb/favoritos/` para adicionar filme aos favoritos;
+  * Criar e testar endpoind (DELETE) `http://localhost:8080/imdb/favoritos/{id}` para remover filme dos favoritos;
+  * Criar e testar endpoind (GET) `http://localhost:8080/imdb/favoritos/json` para retornar os fimes favoritos em json;
+  * Criar e testar endpoind (GET) `http://localhost:8080/imdb/favoritos/html` para retornar os fimes favoritos em html;
+  * Criar e testar endpoind (GET) `http://localhost:8080/imdb/favoritos/html-download` para retornar os fimes favoritos em arquivo html;
+
+![UML-Classe-ImdbService-v3](imgs/UML-Classe-ImdbService-v3.jpg)
+
+![UML-Classe-ImdbController-v5](imgs/UML-Classe-ImdbController-v5.jpg)
+
+
+## Resultados finais
+
+- Classes:
+
+![UML-Classes-Relacionamentos](/imgs/UML-Classes-Relacionamentos.jpg)
+
+
+- Endpoints:
+
+![Swagger-ui-endpoints](/imgs/Swagger-ui-endpoints.jpg)
+
+
+  - `http://localhost:8080/imdb/json`:
+
+![Resultado-json](imgs/Imdb-Resultado-json.jpg)
+
+
+  - `http://localhost:8080/imdb/html`:
+
+![Resultado-html](imgs/Imdb-Resultado-html.jpg)
+
+
+  - `http://localhost:8080/imdb/json/lord`
+
+![Resultado-html](imgs/Imdb-Resultado-json-lord.jpg)
+
+
+  - `http://localhost:8080/imdb/html/lord`:
+
+![Resultado-html](imgs/Imdb-Resultado-html-lord.jpg)
 
 
 ## Referências
